@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+/* ── Amethyst tokens ─────────────────────────────────────────
+   ink      near-black plum   — page background
+   surface  raised panel      — cards, sidebar, inputs
+   line     hairline border   — 1px separators
+   text     high-contrast     — primary copy
+   dim      muted             — secondary copy, labels
+   amethyst vibrant purple    — primary accent
+   lime     acid lime         — success / one highlighted action
+   danger   error red
+──────────────────────────────────────────────────────────── */
+:root {
+  --ink: #0c0910;
+  --surface: #141019;
+  --raised: #1b1523;
+  --line: #292134;
+  --text: #ede9f2;
+  --dim: #978caa;
+  --amethyst: #9d5cff;
+  --amethyst-dim: #6b3fd4;
+  --lime: #c8f135;
+  --danger: #ff6b6b;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-surface: var(--surface);
+  --color-raised: var(--raised);
+  --color-line: var(--line);
+  --color-text: var(--text);
+  --color-dim: var(--dim);
+  --color-amethyst: var(--amethyst);
+  --color-amethyst-dim: var(--amethyst-dim);
+  --color-lime: var(--lime);
+  --color-danger: var(--danger);
+
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-hanken), "Helvetica Neue", sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  --radius-sm: 3px;
+  --radius-md: 6px;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+  text-wrap: balance;
+}
+
+p, li {
+  text-wrap: pretty;
+}
+
+[data-numeric], .tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+:focus-visible {
+  outline: 2px solid var(--amethyst);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--amethyst-dim);
+  color: var(--text);
+}
+
+/* thin scrollbars matching theme */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

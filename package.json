@@ -1,0 +1,41 @@
+{
+  "name": "amethyst",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@ffmpeg/ffmpeg": "^0.12.15",
+    "@ffmpeg/util": "^0.12.2",
+    "browser-image-compression": "^2.0.2",
+    "diff": "^9.0.0",
+    "framer-motion": "^12.42.2",
+    "heic2any": "^0.0.4",
+    "js-yaml": "^5.2.1",
+    "jszip": "^3.10.1",
+    "marked": "^18.0.5",
+    "next": "^15.5.20",
+    "pako": "^3.0.1",
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^6.1.200",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "smol-toml": "^1.7.0",
+    "upng-js": "^2.1.0",
+    "utif2": "^4.1.0",
+    "zustand": "^5.0.14"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20",
+    "@types/pako": "^2.0.4",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
