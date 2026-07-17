@@ -13,8 +13,13 @@ type SentMessage = {
 
 type ApiResult = { status?: number; body?: unknown; error?: string };
 
+const proxyUrl = process.env.NEXT_PUBLIC_DISCORD_WEBHOOK_PROXY_URL;
+
 async function callProxy(payload: object): Promise<ApiResult> {
-  const res = await fetch("/api/discord-webhook", {
+  if (!proxyUrl) {
+    throw new Error("Discord webhook sending is not available in this deployment.");
+  }
+  const res = await fetch(proxyUrl, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
@@ -110,11 +115,12 @@ export default function WebhookManager() {
   return (
     <div className="max-w-2xl">
       <p className="mb-4 text-xs text-dim">
-        Requests go through a server-side proxy on this site (Discord blocks direct browser
-        requests). Nothing is stored — sent-message IDs live in this tab only, so a refresh
-        loses edit/delete for earlier sends.
+        {proxyUrl
+          ? "Requests go through the configured server-side proxy. Nothing is stored — sent-message IDs live in this tab only, so a refresh loses edit/delete for earlier sends."
+          : "Webhook sending is disabled in this static deployment because it needs a server-side proxy. Configure NEXT_PUBLIC_DISCORD_WEBHOOK_PROXY_URL with a compatible external proxy to enable it."}
       </p>
 
+      <fieldset disabled={!proxyUrl} className={!proxyUrl ? "opacity-60" : undefined}>
       <Field label="Webhook URL">
         <input
           value={url}
@@ -191,6 +197,7 @@ export default function WebhookManager() {
           </ul>
         </div>
       )}
+      </fieldset>
     </div>
   );
 }
